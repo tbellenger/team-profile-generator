@@ -24,7 +24,7 @@ Run node index and then follow the prompts. Files will be generated in the dist 
   
 
 ## Walk through video
-none
+[Video-Link](https://watch.screencastify.com/v/1J5evEubtjvhfUTcd6ID)
 
 ## Tests
 npm test
