@@ -94,44 +94,6 @@ const choicePrompt = [
     }
 ];
 
-// A function to write HTML file
-// const writeFile = data => {
-//     return new Promise((resolve, reject) => {
-//         fs.writeFile('./dist/index.html', data, err => {
-//             if (err) {
-//                 reject(err);
-//                 return;
-//             }
-
-//             resolve({
-//                 ok: true,
-//                 message: 'File Created'
-//             });
-//         });
-//     });
-// }
-
-// A function to copy the CSS file
-// const copyFile = () => {
-//     return new Promise((resolve, reject) => {
-//         fs.copyFile('./src/style.css', './dist/style.css', err => {
-//             if (err) {
-//                 reject({
-//                     ok: false,
-//                     message: 'Something went wrong!',
-//                     err
-//                 });
-//                 return;
-//             }
-    
-//             resolve({
-//                 ok: true,
-//                 message: 'Stylesheet created!'
-//             });
-//         });
-//     });
-// };
-
 // Prompt to add a team member and ask if another should be added
 async function promptTeam(team, type) {
     if (type == 'Finished') {
@@ -179,8 +141,6 @@ async function init() {
         // write the HTML and copy the CSS output to dist
         fsPromises.writeFile('./dist/index.html', generateHtml(fullTeamData));
         fsPromises.copyFile('./src/style.css', './dist/style.css')
-        //await writeFile(generateHtml(fullTeamData));
-        //await copyFile();
     } catch (err) {
         console.log(err);
     }

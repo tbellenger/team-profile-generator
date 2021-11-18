@@ -62,16 +62,16 @@ function addTitle(title) {
 function addOther(employee) {
     if (employee.getRole() == 'Manager') {
         return `<div class="card-element">
-    Office number: ${employee.getOfficeNumber()}
-</div>`
+            Office number: ${employee.getOfficeNumber()}
+        </div>`
     } else if (employee.getRole() == 'Engineer') {
         return `<div class="card-element">
-    Github: <a href='https://github.com/${employee.getGithub()}'>${employee.getGithub()}</a>
-</div>`
+            Github: <a href='https://github.com/${employee.getGithub()}' target='_blank'>${employee.getGithub()}</a>
+        </div>`
     } else {
         return `<div class="card-element">
-    School: ${employee.getSchool()}
-</div>`
+            School: ${employee.getSchool()}
+        </div>`
     }
 }
 
