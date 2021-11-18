@@ -1,5 +1,6 @@
 // Include packages needed for this application
 const fs = require('fs');
+const fsPromises = fs.promises;
 const inq = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -94,42 +95,42 @@ const choicePrompt = [
 ];
 
 // A function to write HTML file
-const writeFile = data => {
-    return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/index.html', data, err => {
-            if (err) {
-                reject(err);
-                return;
-            }
+// const writeFile = data => {
+//     return new Promise((resolve, reject) => {
+//         fs.writeFile('./dist/index.html', data, err => {
+//             if (err) {
+//                 reject(err);
+//                 return;
+//             }
 
-            resolve({
-                ok: true,
-                message: 'File Created'
-            });
-        });
-    });
-}
+//             resolve({
+//                 ok: true,
+//                 message: 'File Created'
+//             });
+//         });
+//     });
+// }
 
 // A function to copy the CSS file
-const copyFile = () => {
-    return new Promise((resolve, reject) => {
-        fs.copyFile('./src/style.css', './dist/style.css', err => {
-            if (err) {
-                reject({
-                    ok: false,
-                    message: 'Something went wrong!',
-                    err
-                });
-                return;
-            }
+// const copyFile = () => {
+//     return new Promise((resolve, reject) => {
+//         fs.copyFile('./src/style.css', './dist/style.css', err => {
+//             if (err) {
+//                 reject({
+//                     ok: false,
+//                     message: 'Something went wrong!',
+//                     err
+//                 });
+//                 return;
+//             }
     
-            resolve({
-                ok: true,
-                message: 'Stylesheet created!'
-            });
-        });
-    });
-};
+//             resolve({
+//                 ok: true,
+//                 message: 'Stylesheet created!'
+//             });
+//         });
+//     });
+// };
 
 // Prompt to add a team member and ask if another should be added
 async function promptTeam(team, type) {
@@ -176,8 +177,10 @@ async function init() {
         // add rest of team to array
         const fullTeamData = await promptTeam(team, managerData.nextEmployee);
         // write the HTML and copy the CSS output to dist
-        await writeFile(generateHtml(fullTeamData));
-        await copyFile();
+        fsPromises.writeFile('./dist/index.html', generateHtml(fullTeamData));
+        fsPromises.copyFile('./src/style.css', './dist/style.css')
+        //await writeFile(generateHtml(fullTeamData));
+        //await copyFile();
     } catch (err) {
         console.log(err);
     }

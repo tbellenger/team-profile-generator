@@ -7,7 +7,7 @@ This project uses Node, Jest and JavaScript Classes. It prompts the user to ente
 1. [Installation](#installation)
 1. [Usage](#usage)
 1. [License](#license)
-1. [Walk through video](#walkthroughvideo)
+1. [Walk through video](#walk-through-video)
 1. [Tests](#tests)
 1. [Questions](#questions)
 
