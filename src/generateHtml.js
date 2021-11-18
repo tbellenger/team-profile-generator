@@ -66,7 +66,7 @@ function addOther(employee) {
 </div>`
     } else if (employee.getRole() == 'Engineer') {
         return `<div class="card-element">
-    Github: ${employee.getGithub()}
+    Github: <a href='https://github.com/${employee.getGithub()}'>${employee.getGithub}</a>
 </div>`
     } else {
         return `<div class="card-element">

@@ -133,14 +133,12 @@ async function promptTeam(team, type) {
         if (type == 'Intern') {
             const member = await inq.prompt([...empPrompts, ...internPrompts, ...choicePrompt]);
             const { name, id, email, school } = member;
-            console.log(member);
             const intern = new Intern(name, id, email, school);
             team.push(intern);
             return promptTeam(team, member.nextEmployee);
         } else {
             const member = await inq.prompt([...empPrompts, ...engPrompts, ...choicePrompt]);
             const { name, id, email, github } = member;
-            console.log(member);
             const engineer = new Engineer(name, id, email, github);
             team.push(engineer);
             return promptTeam(team, member.nextEmployee);
