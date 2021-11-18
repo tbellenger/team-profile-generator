@@ -6,7 +6,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const generateHtml = require('./src/generateHtml');
 
-// Create an array of questions for user input
+// Create an array of questions for manager input
 const managerPrompts = [
     {
         type:'input',
@@ -38,6 +38,7 @@ const managerPrompts = [
     }
 ];
 
+// general employee questions
 const empPrompts = [
     {
         type:'input',
@@ -64,6 +65,7 @@ const empPrompts = [
     },
 ];
 
+// engineer question
 const engPrompts = [
     {
         type:'input',
@@ -72,6 +74,7 @@ const engPrompts = [
     },
 ];
 
+// intern question
 const internPrompts = [
     {
         type:'input',
@@ -80,6 +83,7 @@ const internPrompts = [
     },
 ];
 
+// next employee question
 const choicePrompt = [
     {
         type: 'list',
@@ -89,7 +93,7 @@ const choicePrompt = [
     }
 ];
 
-// Create a function to write README file
+// A function to write HTML file
 const writeFile = data => {
     return new Promise((resolve, reject) => {
         fs.writeFile('./dist/index.html', data, err => {
@@ -106,6 +110,7 @@ const writeFile = data => {
     });
 }
 
+// A function to copy the CSS file
 const copyFile = () => {
     return new Promise((resolve, reject) => {
         fs.copyFile('./src/style.css', './dist/style.css', err => {
@@ -126,20 +131,26 @@ const copyFile = () => {
     });
 };
 
+// Prompt to add a team member and ask if another should be added
 async function promptTeam(team, type) {
     if (type == 'Finished') {
+        // if no more then return the team array
         return team;
     } else {
         if (type == 'Intern') {
+            // if adding an intern the ask intern questions 
             const member = await inq.prompt([...empPrompts, ...internPrompts, ...choicePrompt]);
             const { name, id, email, school } = member;
             const intern = new Intern(name, id, email, school);
+            // add the intern to the array and prompt for next team member
             team.push(intern);
             return promptTeam(team, member.nextEmployee);
         } else {
+            // if adding an engineer ask the engineer questions
             const member = await inq.prompt([...empPrompts, ...engPrompts, ...choicePrompt]);
             const { name, id, email, github } = member;
             const engineer = new Engineer(name, id, email, github);
+            // add engineer to the array and prompt for next team member
             team.push(engineer);
             return promptTeam(team, member.nextEmployee);
         }
@@ -164,7 +175,7 @@ async function init() {
         team.push(manager);
         // add rest of team to array
         const fullTeamData = await promptTeam(team, managerData.nextEmployee);
-        // write the HTML and CSS output to dist
+        // write the HTML and copy the CSS output to dist
         await writeFile(generateHtml(fullTeamData));
         await copyFile();
     } catch (err) {

@@ -1,6 +1,5 @@
 var Employee = require('../lib/Employee.js');
 
-
 describe('Employee', () => {
     describe('Check the role', () => {
         test('The role should be Employee', () => {
