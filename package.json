@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "test": "test"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,6 @@
     "inquirer": "^8.2.0"
   },
   "devDependencies": {
-    "jest": "^27.3.1"
+    "jest": "^26.6.3"
   }
 }
