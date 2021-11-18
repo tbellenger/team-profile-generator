@@ -7,7 +7,7 @@ This project uses Node, Jest and JavaScript Classes. It prompts the user to ente
 1. [Installation](#installation)
 1. [Usage](#usage)
 1. [License](#license)
-1. [Contributing](#contributing)
+1. [Walk through video](#walkthroughvideo)
 1. [Tests](#tests)
 1. [Questions](#questions)
 
@@ -23,7 +23,7 @@ Run node index and then follow the prompts. Files will be generated in the dist 
 [MIT License](https://mit-license.org/)
   
 
-## Contributing
+## Walk through video
 none
 
 ## Tests
